@@ -343,11 +343,19 @@ void pausar()
 	// if ( system("read") ) system("pause");
 }
 
-int main()
+int main(int argc, char *argv[])
 {
-	tabuleiro Tabuleiro = criaTabuleiro(10,10,10);
-	int linha, coluna;
+	tabuleiro Tabuleiro;
+	int linha, coluna,
+        qnt_linhas=10, qnt_colunas=10, qnt_bombas=10;
 	char opt;
+    if (argc == 4)
+    {
+        qnt_linhas  = atoi(argv[1]);
+        qnt_colunas = atoi(argv[2]);
+        qnt_bombas  = atoi(argv[3]);
+    }
+    Tabuleiro = criaTabuleiro(qnt_linhas, qnt_colunas, qnt_bombas);
 	imprimeTabuleiro(&Tabuleiro, minas, true);
 	pausar();
 	do {
@@ -394,4 +402,3 @@ int main()
 	liberaMemoriaTabuleiro(&Tabuleiro);
 	pausar();
 }
-
